@@ -1,7 +1,9 @@
 package s2017s40.kr.hs.mirim.sohackhaeng;
 
-import android.annotation.SuppressLint;
+import android.Manifest;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +17,7 @@ import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.google.firebase.messaging.FirebaseMessaging;
-@SuppressLint({ "SetJavaScriptEnabled", "JavascriptInterface" })
+
 public class MainActivity extends AppCompatActivity {
     WebView mWebView;
     TextView errorVeiw;
@@ -24,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, 123);
+        }
+
         FirebaseMessaging.getInstance().subscribeToTopic("notice");
 
         errorVeiw = (TextView) findViewById(R.id.net_error_view);
@@ -64,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 errorVeiw.setVisibility(View.VISIBLE);
             }
         });
-        mWebView.loadUrl("http://m.naver.com");
+        mWebView.loadUrl("http://vvvv980.dothome.co.kr/sohackhaeng_last/");
         mWebView.setWebChromeClient(new WebChromeClient() {
             //alert 처리
             @Override
@@ -107,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        mWebView.loadUrl("http://m.naver.com");
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -121,6 +128,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-
-
