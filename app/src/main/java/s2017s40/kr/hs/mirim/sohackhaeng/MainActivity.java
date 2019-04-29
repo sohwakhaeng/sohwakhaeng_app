@@ -1,5 +1,6 @@
 package s2017s40.kr.hs.mirim.sohackhaeng;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +15,7 @@ import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.google.firebase.messaging.FirebaseMessaging;
-
+@SuppressLint({ "SetJavaScriptEnabled", "JavascriptInterface" })
 public class MainActivity extends AppCompatActivity {
     WebView mWebView;
     TextView errorVeiw;
@@ -120,3 +121,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+
+
