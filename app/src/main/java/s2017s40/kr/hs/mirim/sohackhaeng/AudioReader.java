@@ -5,8 +5,14 @@ import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.util.Log;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class AudioReader
 {
+    FirebaseDatabase database  = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getInstance().getReference();
+
     public static abstract class Listener
     {
         public static final int ERR_OK = 0;
