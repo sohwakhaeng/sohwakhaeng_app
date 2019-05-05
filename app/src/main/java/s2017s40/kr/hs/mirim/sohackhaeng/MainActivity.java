@@ -44,9 +44,11 @@ public class MainActivity extends AppCompatActivity {
     private int sampleRate = 8000;
     private int inputBlockSize = 256;
     private int sampleDecimate = 1;
+    public static int ResultSum = 0;
+    int count = 0;
     String Number;
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getInstance().getReference();
+    DatabaseReference myRef = database.getInstance().getReference().child("User");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
 
         Number = auto.getString("Number",null);
-        myRef.child("User").child(Number).addValueEventListener(new ValueEventListener() {
+        myRef.child(Number).child("Phone").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String a = String.valueOf(dataSnapshot.getValue());
@@ -180,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public final void onReadComplete(int dB) {
                 receiveDecibel(dB);
+
             }
             @Override
             public void onReadError(int error) {
@@ -188,10 +191,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private void receiveDecibel(final int dB) {
-        Log.e("###", dB+" dB");
+       if(count > 1) {
+           myRef.child(Number).child("Noise").child(String.valueOf(count)).setValue(dB);
+       }
+        Log.e("###", dB+" dB" + count++);
+        if(count == 7){
+            count = 0;
+            doStop();
+            return ;
+        }
     }
     public void doStop() {
         audioReader.stopReader();
+        ResultSMS();
+        return;
     }
     class JavaScriptInterface {
         Context mContext;
@@ -210,6 +223,40 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+   public void ResultSMS() {
+        int ResultAvg = 0;
+        myRef.child(Number).child("Noise").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
+                    if(fileSnapshot != null) {
+                        ResultSum += Integer.parseInt(fileSnapshot.getValue(String.class));
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
+        Log.e("sum",String.valueOf(ResultSum));
+    }
+         /*
+        ResultSum *= -1;
+        ResultAvg = ResultSum / 6;
+        if(ResultAvg > 80){
+            Toast.makeText(MainActivity.this, "1", Toast.LENGTH_SHORT).show();
+        }else if(ResultAvg > 60){
+            Toast.makeText(MainActivity.this, "2", Toast.LENGTH_SHORT).show();
+        }else if(ResultAvg > 40){
+            Toast.makeText(MainActivity.this, "3", Toast.LENGTH_SHORT).show();
+        }else if(ResultAvg > 20){
+            Toast.makeText(MainActivity.this, "4", Toast.LENGTH_SHORT).show();
+        }else if(ResultAvg > 0){
+            Toast.makeText(MainActivity.this, "5", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(MainActivity.this, "6", Toast.LENGTH_SHORT).show();
+        }
+    }*/
 
 }
 

@@ -53,7 +53,6 @@
             var conbool = confirm("위치정보 및 디바이스의 마이크 사용을 허용하십니까?");
              if(conbool){
                 document.getElementById("noiseing").style.display="block"; // 숨겨둔 아이콘 보여주기
-                Android.showToast("안뇽");
                 Android.permission(true);
                  // 허용
             }else{
