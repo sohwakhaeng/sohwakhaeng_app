@@ -53,9 +53,7 @@
             <Button
                 android:elevation="6dp"
                 android:id="@+id/buttonStartVerification"
-                android:layout_margin="10dp"
-                android:background="#e44c65"
-                android:textColor="#fff"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -81,10 +79,8 @@
 
             <Button
                 android:elevation="6dp"
-                android:layout_marginRight="5dp"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:id="@+id/buttonVerifyPhone"
-                android:background="#e44c65"
-                android:textColor="#fff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -99,8 +95,7 @@
                 <Button
                     android:elevation="6dp"
                     android:id="@+id/buttonResend"
-                    android:background="#e44c65"
-                    android:textColor="#fff"
+                    style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="인증번호재전송" />

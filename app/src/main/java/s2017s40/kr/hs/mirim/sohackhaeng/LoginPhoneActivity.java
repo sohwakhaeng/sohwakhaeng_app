@@ -325,7 +325,7 @@ public class LoginPhoneActivity extends AppCompatActivity implements
             mPhoneNumberField.setText(null);
             mVerificationField.setText(null);
 
-            myRef.child("User").setValue(user.getPhoneNumber());
+            myRef.child("User").child(user.getPhoneNumber()).child("Phone").setValue(user.getPhoneNumber());
 
             SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
             SharedPreferences.Editor autoLogin = auto.edit();
