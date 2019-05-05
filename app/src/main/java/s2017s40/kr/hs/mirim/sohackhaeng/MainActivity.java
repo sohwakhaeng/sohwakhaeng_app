@@ -20,11 +20,13 @@ import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.google.firebase.messaging.FirebaseMessaging;
-
-
 public class MainActivity extends AppCompatActivity{
     WebView mWebView;
     TextView errorVeiw;
+    private AudioReader audioReader;
+    private int sampleRate = 8000;
+    private int inputBlockSize = 256;
+    private int sampleDecimate = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,11 @@ public class MainActivity extends AppCompatActivity{
         mWebView = (WebView) findViewById(R.id.activity_main_webview);
 
         WebSettings webSettings = mWebView.getSettings();
+        webSettings.setSaveFormData(false);
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setDefaultTextEncodingName("utf-8");
+        mWebView.addJavascriptInterface(new JavaScriptInterface(this), "Android");
+        mWebView.loadUrl("file:///android_asset/demo.html");
 
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
@@ -80,13 +86,6 @@ public class MainActivity extends AppCompatActivity{
                 mWebView.setVisibility(View.GONE);
                 errorVeiw.setVisibility(View.VISIBLE);
             }
-        });
-
-
-
-        mWebView.loadUrl("http://vvvv980.dothome.co.kr/sohackhaeng_last/");
-
-        mWebView.setWebViewClient(new WebViewClient(){
             public void onReceivedSslError(WebView view, final SslErrorHandler handler, SslError error){
                 final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setMessage("이 사이트의 보안 인증서는 신뢰할 수 없습니다.");
@@ -99,29 +98,10 @@ public class MainActivity extends AppCompatActivity{
         });
 
         mWebView.setWebChromeClient(new WebChromeClient() {
-            //alert 처리
-            @Override
-            public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
-                new AlertDialog.Builder(view.getContext())
-                        .setTitle("알림")
-                        .setMessage(message)
-                        .setPositiveButton(android.R.string.ok,
-                                new AlertDialog.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        result.confirm();
-                                    }
-                                })
-                        .setCancelable(false)
-                        .create()
-                        .show();
-                return true;
-            }//onJsAlert
-
-            //confirm 처리
             @Override
             public boolean onJsConfirm(WebView view, String url, String message, final JsResult result) {
                 new AlertDialog.Builder(view.getContext())
-                        .setTitle("알림")
+                        .setTitle("권한 설정")
                         .setMessage(message)
                         .setPositiveButton("Yes",
                                 new AlertDialog.OnClickListener() {
@@ -141,9 +121,7 @@ public class MainActivity extends AppCompatActivity{
                 return true;
             }//onJsconfirm
         });//setWebChromeClient
-
-    }//onCreate
-
+    }//onCreat
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -154,7 +132,6 @@ public class MainActivity extends AppCompatActivity{
         }
         return super.onKeyDown(keyCode, event);
     }
-
 }
 
 
