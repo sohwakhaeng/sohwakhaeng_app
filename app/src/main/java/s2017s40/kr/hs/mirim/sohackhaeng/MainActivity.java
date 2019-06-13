@@ -193,9 +193,11 @@ public class MainActivity extends AppCompatActivity {
            myRef.child(Number).child("Noise").child(String.valueOf(count)).setValue(Math.abs(dB));
        }
         Log.e("###", Math.abs(dB)+" dB" + count++);
+        ResultSum += Math.abs(dB);
         if(count == 7){
             count = 0;
             Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+            intent.putExtra("ResultSum",ResultSum);
             startActivity(intent);
             doStop();
             return ;
