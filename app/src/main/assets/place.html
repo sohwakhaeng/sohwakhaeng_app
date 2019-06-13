@@ -10,64 +10,84 @@
 	<!-- Fancybox slider (Image viewer) -->
 	<link rel="stylesheet" href="assets/css/jquery.fancybox.css" type="text/css" media="screen" />
 	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <style type = "text/css">
+            img{
+                width: 130px;
+                height: 130px;
+            }
+            .border{
+                color : #000;
+                background-color: #fff;
+                margin : 15px;
+                height: 140px;
+                width: 340px;
+                box-shadow: 1px 2px 2px #646262;
+                float: left;
+            }
+            .list-place-img{
+                display: inline-block;
+            }
+            .list-place-text{
+                width: 180px;
+                height: 130px;
+                top: 0;
+                display: inline-block;
+                margin-left : 10px;
+            }
+            h3{
+                color : black;
+            }
+        </style>
 </head>
 <body> <!--  class="is-preload" -->
     <!-- Header -->
-    <header id="header">
-        <h1 id="logo"><a href="index.html">SHS</a></h1>
-        <nav id="nav">
-            <ul>
-                <li><a href="infograpic.html">관광소음이란?</a></li>
-                <li><a href="market.html">가게소개</a></li>
-                <li><a href="place.html">관광지소개</a></li>
-                <li><a href="fermission.html">권한설정</a></li>
-                
-            </ul>
-        </nav>
-        <style type = "text/css">
-            img{
-                width: 100px;
-                height: 100px;
-            }
-            .border{
-                background-color: white;
-                padding : 5px;
-                border-radius: 5px;
-                margin-bottom : 10px;
-            }
-            p{
-                color : black;
-                margin : 5px;
-            }
-            strong{
-                color : black;
-                font-weight: 1000;
-            }
-        </style>
-    </header>
-        <br> <br>
-        <h2>관광지 목록</h2>
-        <sup>관광소음을 측정할 수 있는 관광지를 찾아보세요!</sup> 
-        <section  class="wrapper style2 special fade" id="market">
-                <div class="container">
-                    <div class = "border">
+        <header id="header">
+            <h1 id="logo"><a href="index.html">SHS</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="infograpic.html">관광소음이란?</a></li>
+                    <li><a href="market.html">가게소개</a></li>
+                    <li><a href="place.html">관광지소개</a></li>
+                    <li><a href="fermission.html">권한설정</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section  class="style3" id="market">
+            <div class = "header">
+                <h2>관광지 목록</h2>
+                <p>관광소음을 측정할 수 있는 관광지를 찾아보세요!</p> 
+            </div>
+            <div class="container">
+                <div class = "border">
+                    <div class = "list-place-img">
                         <img src = "images/place01.jpg">
-                        <p><strong>이화 벽화마을</strong></p>
-                        <p>서울 종로구 이화동</p>
                     </div>
-                    <div class = "border">
-                            <img src = "images/place02.jpg">
-                        <p><strong>동피랑 벽화마을</strong></p>
+                    <div class = "list-place-text">
+                        <h3>이화 벽화마을</h3>
+                        <p>서울 종로구 이화동 15-4길</p> 
+                    </div>
+                </div>
+                <div class = "border">
+                    <div class = "list-place-img">
+                        <img src = "images/place02.jpg">
+                    </div>
+                    <div class = "list-place-text">
+                        <h3>동피랑 벽화마을</h3>
                         <p>경남 통영시 동피랑1길 6-18</p>
                     </div>
-                    <div class = "border">
-                            <img src = "images/place03.jpg">
-                        <p><strong>송월동동화마을</strong></p>
+                </div>
+                <div class = "border">
+                    <div class = "list-place-img">
+                        <img src = "images/place03.jpg">
+                    </div>
+                    <div class = "list-place-text">
+                        <h3>송월동동화마을</h3>
                         <p>인천광역시 중구 송월동3가 14-3s</p>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
