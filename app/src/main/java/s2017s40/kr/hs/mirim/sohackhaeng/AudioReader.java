@@ -41,6 +41,7 @@ public class AudioReader
         power /= MAX_16_BIT * MAX_16_BIT;
 
         double result = Math.log10(power) * 10f + FUDGE;
+        Log.e("result",String.valueOf(result));
         return (int)result;
     }
 
