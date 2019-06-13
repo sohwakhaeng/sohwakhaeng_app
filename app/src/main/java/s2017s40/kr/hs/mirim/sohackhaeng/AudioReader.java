@@ -35,6 +35,7 @@ public class AudioReader
         power /= MAX_16_BIT * MAX_16_BIT;
 
         double result = Math.log10(power) * 10f + FUDGE;
+        Log.e("result",String.valueOf(result));
         return (int)result;
     }
 
@@ -109,7 +110,7 @@ public class AudioReader
         short[] buffer;
         int index, readSize;
 
-        int timeout = 200;
+        int timeout = 2000;
         try
         {
             while (timeout > 0 && audioInput.getState() != AudioRecord.STATE_INITIALIZED)
