@@ -1,18 +1,24 @@
 package s2017s40.kr.hs.mirim.sohackhaeng;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AudioReader
 {
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
-
+    String Number;
     public static abstract class Listener
     {
         public static final int ERR_OK = 0;
@@ -39,6 +45,9 @@ public class AudioReader
     }
 
     public AudioReader() {
+    }
+    public AudioReader(String Number) {
+        Number = Number;
     }
     /**
      * Start this reader.
@@ -83,11 +92,12 @@ public class AudioReader
             running = false;
         }
         try {
-            if (readerThread != null)
+            if (readerThread != null){
                 readerThread.join();
-        } catch (InterruptedException e)
+            }
+        } catch (Exception e)
         {
-            ;
+            e.printStackTrace();
         }
         readerThread = null;
 
@@ -100,28 +110,34 @@ public class AudioReader
         }
 
         Log.i(TAG, "Reader: Thread Stopped");
+        //popup창
     }
     /**
      * Main loop of the audio reader. This runs in our own thread.
      * 오디오 리더의 메인 루프. 이것은 우리 자신의 스레드에서 실행됩니다.
      */
     private void readerRun() {
+        Log.i(TAG, "readerRun");
         short[] buffer;
         int index, readSize;
 
-        int timeout = 200;
+        int timeout = 2000;
         try
         {
+            Log.i(TAG, String.valueOf(timeout));
             while (timeout > 0 && audioInput.getState() != AudioRecord.STATE_INITIALIZED)
             {
-                Thread.sleep(50);
-                timeout -= 50;
+                Thread.sleep(500);
+                timeout -= 500;
+                Log.i(TAG, String.valueOf(timeout));
             }
         } catch (InterruptedException e)
         {
+            e.printStackTrace();
         }
 
         if (audioInput.getState() != AudioRecord.STATE_INITIALIZED) {
+
             Log.e(TAG, "Audio reader failed to initialize");
             readError(Listener.ERR_INIT_FAILED);
             running = false;
@@ -131,6 +147,7 @@ public class AudioReader
         try {
             Log.i(TAG, "Reader: Start Recording");
             audioInput.startRecording();
+
             while (running) {
                 long stime = System.currentTimeMillis();
 
@@ -198,8 +215,10 @@ public class AudioReader
         } finally
         {
             Log.i(TAG, "Reader: Stop Recording");
-            if (audioInput.getState() == AudioRecord.RECORDSTATE_RECORDING)
-                audioInput.stop();
+            if (audioInput.getState() == AudioRecord.RECORDSTATE_RECORDING){
+                Log.i(TAG, "Reader: Stop Recording");
+            }
+            audioInput.stop();
         }
     }
     /**

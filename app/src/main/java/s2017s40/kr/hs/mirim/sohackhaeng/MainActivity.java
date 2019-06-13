@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.net.http.SslError;
 import android.os.Build;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     WebView mWebView;
     TextView errorVeiw;
     private AudioReader audioReader;
-    private int sampleRate = 8000;
+    private int sampleRate = 5000;
     private int inputBlockSize = 256;
     private int sampleDecimate = 1;
     public static int ResultSum = 0;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
 
         Number = auto.getString("Number",null);
-        Toast.makeText(MainActivity.this, Number + "님 어서오세요", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, Number + "님 어서오세요", Toast.LENGTH_LONG).show();
 
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET)
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setSaveFormData(false);
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setSupportMultipleWindows(true);
         webSettings.setDefaultTextEncodingName("utf-8");
         mWebView.addJavascriptInterface(new JavaScriptInterface(this),"Android");
         mWebView.loadUrl("file:///android_asset/index.html");
@@ -153,10 +155,20 @@ public class MainActivity extends AppCompatActivity {
                         .show();
                 return true;
             }//onJsconfirm
+            @Override
+            public boolean onCreateWindow(WebView view, boolean dialog, boolean userGesture, Message resultMsg) {
+                WebView newWebView = new WebView(view.getContext());
+
+                WebView.WebViewTransport transport = (WebView.WebViewTransport)resultMsg.obj;
+                transport.setWebView(newWebView);
+                resultMsg.sendToTarget();
+
+                return true;
+            }//onCreateWindow
         });//setWebChromeClient
 
 
-        audioReader = new AudioReader();
+        audioReader = new AudioReader(Number);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
     }//onCreat
@@ -199,7 +211,6 @@ public class MainActivity extends AppCompatActivity {
     }
     public void doStop() {
         audioReader.stopReader();
-        ResultSMS();
         return;
     }
     class JavaScriptInterface {
@@ -220,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
    public void ResultSMS() {
-        int ResultAvg = 0;
+/*        int ResultAvg = 0;
         myRef.child(Number).child("Noise").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -252,12 +263,12 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "5", Toast.LENGTH_SHORT).show();smsNum = 5;
         }else{
             Toast.makeText(MainActivity.this, "6", Toast.LENGTH_SHORT).show();smsNum = 0;
-        }
+        }*/
         SMS(1);
    }
     public void SMS(int smsNum){
 
-        myRef.child(Number).child("Market").addValueEventListener(new ValueEventListener() {
+       /* myRef.child(Number).child("Market").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 int i = 0;
@@ -270,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError error) {
             }
-        });
+        });*/
         String smsText = "쿠폰을 받을 수 없습니다.";
         switch (smsNum){
             case 0: break;
@@ -284,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
                 checkVerify();
             }
             SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(Number, null, smsText, null, null);
+            smsManager.sendTextMessage("01063320658", null, smsText, null, null);
 
             Toast.makeText(getApplicationContext(), "전송 완료!", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
