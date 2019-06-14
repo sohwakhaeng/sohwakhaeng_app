@@ -99,8 +99,8 @@ public class Main2Activity extends AppCompatActivity {
             case 5:
                 smsText = marketList.get(0).getName() +", " + marketList.get(1).getName()+"," +  marketList.get(2).getName()+"의 쿠폰을 문자 받을 수 있습니다.";break;
         }
-        //txtS.setText(smsText);
-        //txtD.setText(resultAvg);
+        txtS.setText(smsText);
+        txtD.setText(resultAvg + "");
 
         try {
             if(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(Main2Activity.this, android.Manifest.permission.SEND_SMS )

@@ -14,23 +14,34 @@
         <link rel="stylesheet" href="assets/css/jquery.fancybox.css" type="text/css" media="screen" />
 
         <style type = "text/css">
-            img{
-                width: 100px;
-                height: 100px;
+           img{
+                width: 130px;
+                height: 130px;
             }
             .border{
-                background-color: white;
-                padding : 5px;
-                border-radius: 5px;
-                margin-bottom : 10px;
+                color : #000;
+                background-color: #fff;
+                margin : 15px;
+                height: 140px;
+                width: 340px;
+                box-shadow: 1px 2px 2px #646262;
+                float: left;
             }
-            p{
-                color : black;
-                margin : 5px;
+            .list-place-img{
+                display: inline-block;
             }
-            strong{
+            .list-place-text{
+                width: 180px;
+                height: 130px;
+                top: 0;
+                display: inline-block;
+                margin-left : 10px;
+            }
+            h3{
                 color : black;
-                font-weight: 1000;
+            }
+            .headerText{
+
             }
         </style>
     </head>
@@ -44,29 +55,42 @@
                     <li><a href="market.html">가게소개</a></li>
                     <li><a href="place.html">관광지소개</a></li>
                     <li><a href="fermission.html">권한설정</a></li>
-                    
                 </ul>
             </nav>
         </header>
         <br> <br>
-        <h2>가게 목록</h2>
-        <sup>관광지 주변에서 쿠폰을 사용할 수 있는 가게를 확인하세요</sup> 
-        <section  class="wrapper style2 special fade" id="market">
+        <section  class="style3" id="market">
+            <div class = "header">
+                <h2>가게 목록</h2>
+                <p>쿠폰을 사용할 수 있는 가게 목록을 확인하세요</p> 
+            </div>
             <div class="container">
                 <div class = "border">
-                    <img src = "images/market01.jpg">
-                    <p><strong>밀라네</strong></p>
-                    <p>서울 종로구 율곡로 220</p>
+                    <div class = "list-place-img">
+                        <img src = "images/market01.jpg">
+                    </div>
+                    <div class = "list-place-text">
+                        <h3>밀라네</h3>
+                        <p>서울 종로구 율곡로 220</p> 
+                    </div>
                 </div>
                 <div class = "border">
+                    <div class = "list-place-img">
                         <img src = "images/market02.jpg">
-                    <p><strong>먹방스튜디오</strong></p>
-                    <p>서울 종로구 이화장1나길 17 1층</p>
+                    </div>
+                    <div class = "list-place-text">
+                        <h3>먹방스튜디오</h3>
+                        <p>서울 종로구 이화장1나길 17 1층</p> 
+                    </div>
                 </div>
                 <div class = "border">
+                    <div class = "list-place-img">
                         <img src = "images/market03.jpg">
-                    <p><strong>슬로스텝</strong></p>
-                    <p>서울 종로구 이화장1나길 17 1층</p>
+                    </div>
+                    <div class = "list-place-text">
+                        <h3>슬로스텝</h3>
+                        <p>서울 종로구 이화장1나길 17 1층</p> 
+                    </div>
                 </div>
             </div>
         </section>
