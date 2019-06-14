@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#272833">
+    android:background="#0C0727">
 
     <LinearLayout
         android:id="@+id/phoneAuthFields"
@@ -17,7 +17,6 @@
         android:paddingRight="16dp">
 
         <ImageView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -44,10 +43,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:background="#fff"
                 android:hint="전화번호를 입력해주세요"
                 android:inputType="phone"
-                android:textColor="#fff"
-                android:textColorHint="#fff"
+                android:textColor="#000"
+                android:textColorHint="#000"
                 android:textSize="18sp" />
 
             <Button
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="인증번호 \n전송" />
+                android:text="인증번호 전송" />
         </LinearLayout>
 
         <LinearLayout
@@ -90,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:text="인증번호\n확인" />
+                    android:text="로그인" />
                 <Button
                     android:elevation="6dp"
                     android:id="@+id/buttonResend"
