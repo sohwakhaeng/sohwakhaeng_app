@@ -63,7 +63,7 @@ public class Main2Activity extends AppCompatActivity {
                 startActivity(delIntent);
             }
         });
-        ResultAvg = ResultSum / 6;
+        ResultAvg = ResultSum / 5;
         if(ResultAvg > 80){
            smsNum = 1;
         }else if(ResultAvg > 60){

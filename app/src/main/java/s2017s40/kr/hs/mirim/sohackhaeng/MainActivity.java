@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private int sampleRate = 5000;
     private int inputBlockSize = 256;
     private int sampleDecimate = 1;
-    public static int ResultSum = 0;
+    public int ResultSum = 0;
     public static String market[] = new String[3];
     int count = 0;
     String Number;
@@ -203,13 +203,14 @@ public class MainActivity extends AppCompatActivity {
     private void receiveDecibel(final int dB) {
        if(count > 1) {
            myRef.child(Number).child("Noise").child(String.valueOf(count)).setValue(Math.abs(dB));
+           ResultSum += Math.abs(dB);
        }
         Log.e("###", Math.abs(dB)+" dB" + count++);
-        ResultSum += Math.abs(dB);
         if(count == 7){
             count = 0;
             Intent intent = new Intent(MainActivity.this, Main2Activity.class);
             intent.putExtra("ResultSum",ResultSum);
+            Log.e("ResultSum",ResultSum +"");
             startActivity(intent);
             doStop();
             return ;

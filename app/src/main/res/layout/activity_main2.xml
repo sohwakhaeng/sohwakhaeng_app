@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="30sp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="50dp"
             android:text="소음 측정 결과"/>
         <TextView
             android:gravity="center"
@@ -46,8 +46,4 @@
             android:textColor="#fff"
             android:text="앱 삭제하기"/>
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@drawable/shadow"/>
 </LinearLayout>
