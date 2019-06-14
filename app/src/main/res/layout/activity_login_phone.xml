@@ -40,10 +40,10 @@
             <EditText
                 android:id="@+id/fieldPhoneNumber"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@drawable/radius"
+                android:background="#fff"
                 android:hint="전화번호를 입력해주세요"
                 android:inputType="phone"
                 android:textColor="#000"
@@ -55,7 +55,7 @@
                 android:id="@+id/buttonStartVerification"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_margin="20dp"
                 android:text="인증번호 전송" />
         </LinearLayout>
@@ -66,14 +66,14 @@
             android:orientation="vertical">
 
             <EditText
+
                 android:id="@+id/fieldVerificationCode"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:textColor="#000"
-                android:textColorHint="#000"
-                android:background= "@drawable/radius"
+                android:textColor="#fff"
+                android:textColorHint="#fff"
                 android:hint="인증 코드를 입력해주세요"
                 android:inputType="number"
                 android:textSize="18sp" />
@@ -87,19 +87,20 @@
                     android:id="@+id/buttonVerifyPhone"
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
+                    android:layout_marginHorizental="10dp"
                     android:text="로그인" />
+
                 <Button
-                    android:elevation="6dp"
                     android:id="@+id/buttonResend"
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_weight="2"
-                    android:layout_margin="10dp"
-                    android:text="인증번호\n재전송" />
+                    android:elevation="6dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="재전송" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
