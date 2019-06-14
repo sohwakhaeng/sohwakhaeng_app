@@ -29,6 +29,7 @@
             android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:text="main"/>
         <TextView
             android:gravity="center"
@@ -37,7 +38,16 @@
             android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:text="main"/>
+        <TextView
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="감사합니다."/>
         <Button
             android:id="@+id/result_ok_btn"
             android:layout_width="match_parent"

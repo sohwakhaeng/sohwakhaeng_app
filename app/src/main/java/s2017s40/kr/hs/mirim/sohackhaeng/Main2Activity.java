@@ -91,16 +91,17 @@ public class Main2Activity extends AppCompatActivity {
             case 0: case 1:
                 smsText = "쿠폰을 받을 수 없습니다.";break;
             case 2:
-                smsText = marketList.get(0).getName() + "의 쿠폰을 문자 받을 수 있습니다.";break;
+                smsText = marketList.get(0).getName(); break;
             case 3:
-                smsText = marketList.get(0).getName() +", " + marketList.get(1).getName()+ "의 쿠폰을 문자 받을 수 있습니다.";break;
+                smsText = marketList.get(0).getName() +", " + marketList.get(1).getName();break;
             case 4:
-                smsText = marketList.get(0).getName() +", " + marketList.get(1).getName()+ "의 쿠폰을 문자 받을 수 있습니다.";break;
+                smsText = marketList.get(0).getName() +", " + marketList.get(1).getName();break;
             case 5:
-                smsText = marketList.get(0).getName() +", " + marketList.get(1).getName()+"," +  marketList.get(2).getName()+"의 쿠폰을 문자 받을 수 있습니다.";break;
+                smsText = marketList.get(0).getName() +", " + marketList.get(1).getName()+", " +  marketList.get(2).getName();break;
         }
-        txtS.setText(smsText);
-        txtD.setText(resultAvg + "");
+        txtD.setText(Number + "님의 10분 간 측정 된 평균 데시벨은" + resultAvg + "DB 입니다.");
+        txtS.setText(smsText + "가게의 코드를 문자로 전송했습니다.");
+
 
         try {
             if(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(Main2Activity.this, android.Manifest.permission.SEND_SMS )
@@ -112,7 +113,7 @@ public class Main2Activity extends AppCompatActivity {
             Log.e("newNumber","newNumber" + newNumber);
             smsManager.sendTextMessage(newNumber, null, smsText, null, null);
 
-            Toast.makeText(getApplicationContext(), "전송 완료!" + smsText, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "전송 완료!" + smsText + "의 쿠폰을 문자 받을 수 있습니다.", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "SMS faild, please try again later!", Toast.LENGTH_LONG).show();
             Log.e("error", String.valueOf(e));
