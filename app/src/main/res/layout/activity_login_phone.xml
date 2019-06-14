@@ -40,10 +40,10 @@
             <EditText
                 android:id="@+id/fieldPhoneNumber"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="#fff"
+                android:background="@drawable/radius"
                 android:hint="전화번호를 입력해주세요"
                 android:inputType="phone"
                 android:textColor="#000"
@@ -66,14 +66,14 @@
             android:orientation="vertical">
 
             <EditText
-
                 android:id="@+id/fieldVerificationCode"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:textColor="#fff"
-                android:textColorHint="#fff"
+                android:textColor="#000"
+                android:textColorHint="#000"
+                android:background= "@drawable/radius"
                 android:hint="인증 코드를 입력해주세요"
                 android:inputType="number"
                 android:textSize="18sp" />
