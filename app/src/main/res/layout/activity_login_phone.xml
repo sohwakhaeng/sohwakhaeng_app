@@ -1,103 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:background="#284C70"
     android:orientation="vertical"
-    android:background="#284C70">
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:text="소확행"
+        android:textColor="#fff"
+        android:textSize="50sp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_marginVertical="20dp"
+        android:text="전화번호로 쉽게 회원가입을 해주세요"/>
     <LinearLayout
         android:id="@+id/phoneAuthFields"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@drawable/radius"
+        android:padding="30dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
-
         <TextView
+            android:text="전화번호"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="전화번호를 이용해서 로그인 하세요"
-            android:textColor="#fff"
-            android:layout_marginBottom="100dp"
-            android:textSize="25sp" />
-
+            android:layout_height="wrap_content" />
         <LinearLayout
+            android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:weightSum="3">
 
             <EditText
                 android:id="@+id/fieldPhoneNumber"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="#fff"
-                android:hint="전화번호를 입력해주세요"
-                android:inputType="phone"
                 android:textColor="#000"
-                android:textColorHint="#000"
+                android:textColorHint="#AAAAAA"
+                android:hint="전화번호"
+                android:inputType="phone"
                 android:textSize="18sp" />
-
             <Button
+                android:layout_marginBottom="20dp"
                 android:id="@+id/buttonStartVerification"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
                 android:elevation="6dp"
-                android:layout_marginTop="10dp"
-                android:text="인증번호 전송" />
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:background="#E46948"
+                android:textColor="#fff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="인증번호 \n전송"
+              />
         </LinearLayout>
 
+        <TextView
+            android:text="인증번호"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <LinearLayout
+            android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-
+            android:orientation="horizontal">
             <EditText
                 android:id="@+id/fieldVerificationCode"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1"
                 android:textColor="#000"
-                android:textColorHint="#000"
-                android:background="#fff"
-                android:hint="인증 코드를 입력해주세요"
+                android:textColorHint="#AAAAAA"
+                android:layout_weight="1"
+                android:hint="인증 코드"
                 android:inputType="number"
                 android:textSize="18sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:orientation="horizontal">
                 <Button
+                    android:layout_marginBottom="20dp"
                     android:elevation="6dp"
-                    android:id="@+id/buttonVerifyPhone"
-                    style="@style/Widget.AppCompat.Button.Colored"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:layout_marginTop="10dp"
-                    android:text="로그인" />
-
-                <Button
+                    android:background="#E46948"
+                    android:textColor="#fff"
                     android:id="@+id/buttonResend"
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_weight="2"
-                    android:elevation="6dp"
-                    android:layout_marginTop="10dp"
-                    android:text="재전송" />
+                    android:layout_height="wrap_content"
+                    android:text="인증번호\n재전송"
+                   />
             </LinearLayout>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonVerifyPhone"
+            android:elevation="6dp"
+            android:background="#E46948"
+            android:textColor="#fff"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="회원가입"
+            />
     </LinearLayout>
 
 </LinearLayout>

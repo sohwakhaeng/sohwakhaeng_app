@@ -184,6 +184,18 @@ public class LoginPhoneActivity extends AppCompatActivity implements
 
                             FirebaseUser user = task.getResult().getUser();
                             updateUI(STATE_SIGNIN_SUCCESS, user);
+
+                            myRef.child("User").setValue(user.getPhoneNumber());
+
+                            SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+                            SharedPreferences.Editor autoLogin = auto.edit();
+                            autoLogin.putString("Number", user.getPhoneNumber());
+                            //꼭 commit()을 해줘야 값이 저장됩니다 ㅎㅎ
+                            autoLogin.commit();
+
+                            Intent intent = new Intent(LoginPhoneActivity.this, MainActivity.class);
+                            startActivity(intent);
+
                         } else {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
@@ -256,22 +268,13 @@ public class LoginPhoneActivity extends AppCompatActivity implements
             mPhoneNumberViews.setVisibility(View.VISIBLE);
         } else {
             // Signed in
-            mPhoneNumberViews.setVisibility(View.GONE);
+            mAuth.signOut();
+            mPhoneNumberViews.setVisibility(View.VISIBLE);
 
             enableViews(mPhoneNumberField, mVerificationField);
-            mPhoneNumberField.setText(null);
-            mVerificationField.setText(null);
+       /*     mPhoneNumberField.setText(null);
+            mVerificationField.setText(null);*/
 
-            myRef.child("User").setValue(user.getPhoneNumber());
-
-            SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
-            SharedPreferences.Editor autoLogin = auto.edit();
-            autoLogin.putString("Number", user.getPhoneNumber());
-            //꼭 commit()을 해줘야 값이 저장됩니다 ㅎㅎ
-            autoLogin.commit();
-
-            Intent intent = new Intent(LoginPhoneActivity.this, MainActivity.class);
-            startActivity(intent);
         }
     }
 
