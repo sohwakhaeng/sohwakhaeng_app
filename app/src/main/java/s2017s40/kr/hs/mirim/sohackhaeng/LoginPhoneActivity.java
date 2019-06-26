@@ -64,6 +64,7 @@ public class LoginPhoneActivity extends AppCompatActivity implements
     private Button mStartButton;
     private Button mVerifyButton;
     private Button mResendButton;
+    String cPhoneNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -279,8 +280,8 @@ public class LoginPhoneActivity extends AppCompatActivity implements
     }
 
     private boolean validatePhoneNumber() {
-        String phoneNumber = mPhoneNumberField.getText().toString();
-        if (TextUtils.isEmpty(phoneNumber)) {
+        cPhoneNum =  phoneChange(mPhoneNumberField.getText().toString());
+        if (TextUtils.isEmpty(cPhoneNum)) {
             mPhoneNumberField.setError("Invalid phone number.");
             return false;
         }
@@ -307,8 +308,8 @@ public class LoginPhoneActivity extends AppCompatActivity implements
                 if (!validatePhoneNumber()) {
                     return;
                 }
-
-                startPhoneNumberVerification(mPhoneNumberField.getText().toString());
+                cPhoneNum = phoneChange(mPhoneNumberField.getText().toString());
+                startPhoneNumberVerification(cPhoneNum);
                 break;
             case R.id.buttonVerifyPhone:
                 String code = mVerificationField.getText().toString();
@@ -319,11 +320,18 @@ public class LoginPhoneActivity extends AppCompatActivity implements
                 verifyPhoneNumberWithCode(mVerificationId, code);
                 break;
             case R.id.buttonResend:
-                resendVerificationCode(mPhoneNumberField.getText().toString(), mResendToken);
+                cPhoneNum = phoneChange(mPhoneNumberField.getText().toString());
+                resendVerificationCode(cPhoneNum, mResendToken);
                 break;
            /* case R.id.signOutButton:
                 signOut();
                 break;*/
         }
+    }
+    public String phoneChange(String phone){
+        phone = phone.substring(1);
+        phone = "+82" + phone;
+        Log.e("phone",phone);
+        return phone;
     }
 }

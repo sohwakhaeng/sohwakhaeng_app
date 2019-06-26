@@ -236,6 +236,7 @@ public class MainActivity extends AppCompatActivity {
         @JavascriptInterface
         public void permission(boolean per){
             Log.e("permission","들어옴");
+            checkVerify();checkVerify2();
             if(per){
                 doStart();
             }
@@ -246,7 +247,16 @@ public class MainActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.SEND_SMS, Manifest.permission.SEND_SMS},1);
-        } else {
+        } else{
+        }
+    }
+    @TargetApi(Build.VERSION_CODES.M)
+    public void checkVerify2(){
+        if(ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO, Manifest.permission.RECORD_AUDIO},2);
+        }else{
+
         }
     }
 }
