@@ -19,20 +19,25 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
             android:text="소음 측정 결과"
             android:textColor="#000"
             android:textSize="30sp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="50dp"
+            android:background="#FC807D7D"/>
         <TextView
             android:gravity="center"
             android:id="@+id/result_audio_text"
-            android:textColor="#000"
-            android:textSize="20sp"
+            android:textColor="#E46948"
+            android:textSize="40sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="main"/>
+            android:layout_marginBottom="50dp"
+            android:text="audio"/>
         <TextView
             android:gravity="center"
             android:id="@+id/result_sms_text"
@@ -40,23 +45,27 @@
             android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="main"/>
-        <TextView
-            android:gravity="center"
-            android:textSize="25sp"
-            android:textColor="#000"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="감사합니다"/>
+            android:layout_marginBottom="40dp"
+            android:text="sms"/>
+
         <Button
             android:id="@+id/result_ok_btn"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_gravity="center"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="#E46948"
+            android:text="앱 삭제하기"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+        <TextView
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#FC807D7D"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:textColor="#fff"
-            android:background="#E46948"
-            android:text="앱 삭제하기"/>
+            android:layout_marginTop="10dp"
+            android:text="소확행 프로젝트를 사용해 주셔서 감사합니다."/>
+
     </LinearLayout>
 </LinearLayout>

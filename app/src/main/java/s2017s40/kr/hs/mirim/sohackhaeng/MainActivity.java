@@ -80,10 +80,14 @@ public class MainActivity extends AppCompatActivity {
         mWebView = (WebView) findViewById(R.id.activity_main_webview);
 
         WebSettings webSettings = mWebView.getSettings();
+
         webSettings.setSaveFormData(false);
         webSettings.setJavaScriptEnabled(true);
         webSettings.setSupportMultipleWindows(true);
         webSettings.setDefaultTextEncodingName("utf-8");
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setSupportZoom(true);
+
         mWebView.addJavascriptInterface(new JavaScriptInterface(this),"Android");
         mWebView.loadUrl("file:///android_asset/index.html");
 
