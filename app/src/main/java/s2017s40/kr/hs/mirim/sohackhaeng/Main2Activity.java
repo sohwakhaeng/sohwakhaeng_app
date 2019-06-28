@@ -86,21 +86,27 @@ public class Main2Activity extends AppCompatActivity {
         marketList.add(new MarketDTO("서울 종로구 이화장1나길 17 1층","69S5W5G","먹방스튜디오"));
         marketList.add(new MarketDTO("서울 종로구 이화장1나길13 1층","5W6XC6W","슬로스텝"));
 
+        String showText = "";
         String smsText = "";
         switch (smsNum){
             case 0: case 1:
-                smsText = "쿠폰을 받을 수 없습니다.";break;
+                showText = "쿠폰을 받을 수 없습니다.";
+                smsText = "소확행을 이용해 주셔서 감사합니다."; break;
             case 2:
-                smsText = marketList.get(0).getName(); break;
+                showText = marketList.get(0).getName();
+                smsText = "밀라네(서울시 종로구 율곡로 226) : 26D5S6V\n 이 코드를 가게에 보여주세요 \n 소확행을 이용해 주셔서 감사합니다.";break;
             case 3:
-                smsText = marketList.get(0).getName() +", " + marketList.get(1).getName();break;
+                showText = marketList.get(0).getName() +", " + marketList.get(1).getName();
+                smsText = "밀라네(서울시 종로구 율곡로 226) : 26D5S6V\n먹방스튜디오(서울 종로구 이화장1나길 17 1층) : 69S5W5G \n이 코드를 가게에 보여주세요 \n 소확행을 이용해 주셔서 감사합니다.";break;
             case 4:
-                smsText = marketList.get(0).getName() +", " + marketList.get(1).getName();break;
+                showText = marketList.get(0).getName() +", " + marketList.get(1).getName();
+                smsText = "밀라네(서울시 종로구 율곡로 226) : 26D5S6V\n먹방스튜디오(서울 종로구 이화장1나길 17 1층) : 69S5W5G \n 이 코드를 가게에 보여주세요 \n 소확행을 이용해 주셔서 감사합니다.";break;
             case 5:
-                smsText = marketList.get(0).getName() +", " + marketList.get(1).getName()+", " +  marketList.get(2).getName();break;
+                showText = marketList.get(0).getName() +", " + marketList.get(1).getName()+", " +  marketList.get(2).getName();
+                smsText = "밀라네(서울시 종로구 율곡로 226) : 26D5S6V\n먹방스튜디오(서울 종로구 이화장1나길 17 1층) : 69S5W5G \n슬로스텝(서울 종로구 이화장1나길13 1층) : 5W6XC6W \n 이 코드를 가게에 보여주세요 \n 소확행을 이용해 주셔서 감사합니다.";break;
         }
-        txtD.setText(Number + "님의 10분 간 측정 된 평균 데시벨은" + resultAvg + "DB 입니다.");
-        txtS.setText(smsText + "가게의 코드를 문자로 전송했습니다.");
+        txtD.setText(Number + "님의 10분 간 측정 된 평균 데시벨은\n" + resultAvg + "DB\n입니다.");
+        txtS.setText(showText + "가게의 코드를 문자로 전송했습니다.");
 
 
         try {
@@ -113,7 +119,7 @@ public class Main2Activity extends AppCompatActivity {
             Log.e("newNumber","newNumber" + newNumber);
             smsManager.sendTextMessage(newNumber, null, smsText, null, null);
 
-            Toast.makeText(getApplicationContext(), "전송 완료!" + smsText + "의 쿠폰을 문자 받을 수 있습니다.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "전송 완료!" + showText + "의 쿠폰을 문자 받을 수 있습니다.", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "SMS faild, please try again later!", Toast.LENGTH_LONG).show();
             Log.e("error", String.valueOf(e));

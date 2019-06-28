@@ -195,8 +195,8 @@ public class MainActivity extends AppCompatActivity {
         {
             @Override
             public final void onReadComplete(int dB) {
+                Log.e("receiveEdcible","asdfasdfasdfsadf");
                 receiveDecibel(dB);
-
             }
             @Override
             public void onReadError(int error) {
@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
         @JavascriptInterface
         public void permission(boolean per){
             Log.e("permission","들어옴");
-            checkVerify();checkVerify2();
+            checkVerify();
             if(per){
                 doStart();
             }
@@ -244,14 +244,6 @@ public class MainActivity extends AppCompatActivity {
     }
     @TargetApi(Build.VERSION_CODES.M)
     public void checkVerify(){
-        if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.SEND_SMS, Manifest.permission.SEND_SMS},1);
-        } else{
-        }
-    }
-    @TargetApi(Build.VERSION_CODES.M)
-    public void checkVerify2(){
         if(ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
             requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO, Manifest.permission.RECORD_AUDIO},2);

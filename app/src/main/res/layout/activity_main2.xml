@@ -29,15 +29,16 @@
             android:layout_height="2dp"
             android:layout_marginBottom="50dp"
             android:background="#FC807D7D"/>
+
         <TextView
-            android:gravity="center"
             android:id="@+id/result_audio_text"
-            android:textColor="#E46948"
-            android:textSize="40sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
-            android:text="audio"/>
+            android:gravity="center"
+            android:text="audio"
+            android:textColor="#000"
+            android:textSize="25sp" />
         <TextView
             android:gravity="center"
             android:id="@+id/result_sms_text"
